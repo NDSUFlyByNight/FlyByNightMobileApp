@@ -22,4 +22,13 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'joda-time:joda-time:2.3'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.squareup.retrofit:retrofit:1.8.0'
+    compile 'com.squareup.retrofit:retrofit-mock:1.8.0'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile 'com.android.support:appcompat-v7:23.0.0'
 }
