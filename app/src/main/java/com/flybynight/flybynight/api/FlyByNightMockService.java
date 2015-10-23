@@ -60,7 +60,7 @@ public class FlyByNightMockService implements FlyByNightService {
     }
 
     @Override
-    public FlightAttendantFlightsResponse getFlightAttendantFlights(@Header("Authorization") String bearer) throws InterruptedException {
+    public FlightAttendantFlightsResponse getFlightAttendantFlights() throws InterruptedException {
         // Process Time
         process();
 

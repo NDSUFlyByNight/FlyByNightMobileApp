@@ -19,6 +19,6 @@ public interface FlyByNightService {
     SignInResponse signInUser(@Query("token") String token) throws InterruptedException;
 
     @GET("/flightattendent")
-    FlightAttendantFlightsResponse getFlightAttendantFlights(@Header("Authorization") String bearer) throws InterruptedException;
+    FlightAttendantFlightsResponse getFlightAttendantFlights() throws InterruptedException;
 
 }

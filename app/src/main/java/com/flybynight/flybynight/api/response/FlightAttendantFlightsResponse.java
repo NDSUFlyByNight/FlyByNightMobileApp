@@ -9,7 +9,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class FlightAttendantFlightsResponse extends Response {
 
-
     @SerializedName("flights")
     public Flight[] flights;
 

@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.flybynight.flybynight.api.FlyByNightApi;
+import com.flybynight.flybynight.api.response.FlightAttendantFlightsResponse;
 import com.flybynight.flybynight.api.response.SignInResponse;
 import com.flybynight.flybynight.utils.AsyncTaskHandler;
 
@@ -41,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     void example(final String username, final String password) {
 
-
         AsyncTaskHandler<SignInResponse> signInTask = new AsyncTaskHandler<SignInResponse>() {
             @Override
             public SignInResponse doInBackground() throws Exception {
-                return FlyByNightApi.getApi().signInUser(username,password);
+                return FlyByNightApi.getApi().signInUser(username, password);
             }
 
             @Override
