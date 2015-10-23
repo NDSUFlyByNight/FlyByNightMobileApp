@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.flybynight.flybynight.FlightDetailsActivity">
+
+
+    <item android:id="@+id/action_list" android:title="Display List"
+        android:orderInCategory="0" />
+
+    <item android:id="@+id/action_airframe" android:title="Display Airframe"
+        android:orderInCategory="1" />
+
+
+</menu>
