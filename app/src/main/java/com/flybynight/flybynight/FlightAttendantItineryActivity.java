@@ -47,7 +47,7 @@ public class FlightAttendantItineryActivity extends ActionBarActivity implements
 
         list.setAdapter(adapter);
 
-        list.getOnItemSelectedListener(this);
+        list.setOnItemClickListener(this);
 
         getData();
     }

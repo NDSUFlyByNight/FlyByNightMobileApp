@@ -50,6 +50,8 @@ public class FlightDetailsActivity extends AppCompatActivity implements View.OnC
 
         flight = (Flight)getIntent().getSerializableExtra("flight");
 
+        getSupportActionBar().setTitle("Flight: " + flight.flight_num);
+
         listFrag = FlightDetailsListFragment.newInstance();
         airframeFrag = FlightDetailsAirframeFragment.newInstance();
 
@@ -67,8 +69,8 @@ public class FlightDetailsActivity extends AppCompatActivity implements View.OnC
         getMenuInflater().inflate(R.menu.menu_flight_details, menu);
 
         miDisplayList = menu.findItem(R.id.action_list);
+        miDisplayList.setVisible(false);
         miDisplayAirframe = menu.findItem(R.id.action_airframe);
-        miDisplayAirframe.setVisible(false);
 
         return true;
     }
