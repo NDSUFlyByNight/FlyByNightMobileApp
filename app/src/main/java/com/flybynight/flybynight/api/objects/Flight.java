@@ -2,10 +2,12 @@ package com.flybynight.flybynight.api.objects;
 
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
+
 /**
  * Created by closestudios on 10/11/15.
  */
-public class Flight extends BaseObject {
+public class Flight extends BaseObject implements Serializable {
 
     // Each flight entry should display flight number, arrival time, departure time,
     // arrival destination, departure destination, number of passengers, passenger seats available,

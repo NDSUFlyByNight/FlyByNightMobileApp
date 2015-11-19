@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.flybynight.flybynight.api.FlyByNightApi;
+import com.flybynight.flybynight.api.objects.Flight;
 import com.flybynight.flybynight.api.response.FlightAttendantFlightsResponse;
 import com.flybynight.flybynight.api.response.SignInResponse;
 import com.flybynight.flybynight.utils.AsyncTaskHandler;
@@ -21,12 +23,12 @@ import butterknife.InjectView;
 /**
  * Created by Everett on 10/22/2015.
  */
-public class FlightAttendantItineryActivity extends ActionBarActivity {
+public class FlightAttendantItineryActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     @InjectView(R.id.progressBar)
     ProgressBar progressBar;
 
-    BaseInflaterAdapter<Card> adapter;
+    BaseInflaterAdapter<Flight> adapter;
     ListView list;
 
     @Override
@@ -41,11 +43,11 @@ public class FlightAttendantItineryActivity extends ActionBarActivity {
         list.addHeaderView(new View(this));
         list.addFooterView(new View(this));
 
-        adapter = new BaseInflaterAdapter<Card>(new CardInflater());
-
-
+        adapter = new BaseInflaterAdapter<Flight>(new CardInflater());
 
         list.setAdapter(adapter);
+
+        list.getOnItemSelectedListener(this);
 
         getData();
     }
@@ -70,8 +72,7 @@ public class FlightAttendantItineryActivity extends ActionBarActivity {
                 adapter.clear(false);
 
                 for(int i=0;i<result.flights.length;i++) {
-                    Card data = new Card(result.flights[i].flight_num, "Departure:  " + result.flights[i].departure_time.toString(), "Arrival: " + result.flights[i].arrival_time.toString());
-                    adapter.addItem(data, false);
+                    adapter.addItem(result.flights[i], false);
                 }
                 adapter.notifyDataSetChanged();
 
@@ -94,6 +95,12 @@ public class FlightAttendantItineryActivity extends ActionBarActivity {
 
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Flight flight = (Flight)parent.getItemAtPosition(position);
+        startActivity(FlightDetailsActivity.getFlightDetailsActivity(this, flight));
     }
 
 }

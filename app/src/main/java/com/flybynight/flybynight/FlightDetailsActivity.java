@@ -3,6 +3,8 @@ package com.flybynight.flybynight;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.flybynight.flybynight.api.FlyByNightApi;
 import com.flybynight.flybynight.api.FlyByNightService;
+import com.flybynight.flybynight.api.objects.Flight;
 import com.flybynight.flybynight.api.response.FlightAttendantFlightsResponse;
 import com.flybynight.flybynight.api.response.SignInResponse;
 import com.flybynight.flybynight.utils.AsyncTaskHandler;
@@ -31,11 +34,21 @@ public class FlightDetailsActivity extends AppCompatActivity implements View.OnC
     FlightDetailsListFragment listFrag;
     FlightDetailsAirframeFragment airframeFrag;
 
+    public static Intent getFlightDetailsActivity(Context context, Flight flight) {
+        Intent intent = new Intent(context, FlightDetailsActivity.class);
+        intent.putExtra("flight",flight);
+        return intent;
+    }
+
+    Flight flight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_details);
         ButterKnife.inject(this);
+
+        flight = (Flight)getIntent().getSerializableExtra("flight");
 
         listFrag = FlightDetailsListFragment.newInstance();
         airframeFrag = FlightDetailsAirframeFragment.newInstance();
@@ -43,7 +56,6 @@ public class FlightDetailsActivity extends AppCompatActivity implements View.OnC
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.flContent, listFrag);
         transaction.commit();
-
 
         changeView(DisplayPage.List, true);
 

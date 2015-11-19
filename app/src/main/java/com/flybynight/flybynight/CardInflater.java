@@ -5,13 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.flybynight.flybynight.api.objects.Flight;
+
 /**
  * Created by Everett on 10/23/2015.
  */
-public class CardInflater implements IAdapterViewInflater<Card>
+public class CardInflater implements IAdapterViewInflater<Flight>
 {
 	@Override
-	public View inflate(final BaseInflaterAdapter<Card> adapter, final int pos, View convertView, ViewGroup parent)
+	public View inflate(final BaseInflaterAdapter<Flight> adapter, final int pos, View convertView, ViewGroup parent)
 	{
 		ViewHolder holder;
 
@@ -26,7 +28,7 @@ public class CardInflater implements IAdapterViewInflater<Card>
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		final Card item = adapter.getTItem(pos);
+		final Flight item = adapter.getTItem(pos);
 		holder.updateDisplay(item);
 
 		return convertView;
@@ -48,11 +50,11 @@ public class CardInflater implements IAdapterViewInflater<Card>
 			rootView.setTag(this);
 		}
 
-		public void updateDisplay(Card item)
+		public void updateDisplay(Flight item)
 		{
-			text1.setText(item.getText1());
-			text2.setText(item.getText2());
-			text3.setText(item.getText3());
+			text1.setText(item.flight_num);
+			text2.setText("Departure: " + item.departure_time);
+			text3.setText("Arrival: " + item.arrival_time);
 		}
 	}
 }
