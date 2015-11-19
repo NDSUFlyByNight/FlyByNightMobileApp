@@ -1,7 +1,9 @@
 package com.flybynight.flybynight;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,9 +29,9 @@ public class SignActivity extends AppCompatActivity implements View.OnClickListe
 
     @InjectView(R.id.tvSignIn)
     TextView tvSignIn;
+
     @InjectView(R.id.pbLoading)
     ProgressBar pbLoading;
-
 
 
     @Override
@@ -39,6 +41,8 @@ public class SignActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.inject(this);
 
         tvSignIn.setOnClickListener(this);
+        etUsername.setText("user");
+        etPassword.setText("password");
 
     }
 
@@ -63,13 +67,18 @@ public class SignActivity extends AppCompatActivity implements View.OnClickListe
                     Preferences.getPrefs(SignActivity.this).setToken(result.token);
 
                     // Go to flight attendant page.
-
+                    startActivity(new Intent(SignActivity.this, FlightAttendantItineryActivity.class));
 
                 } else {
                     // Error
                     etUsername.setError("Invalid Combination");
                     etPassword.setError("Invalid Combination");
                 }
+            }
+
+            @Override
+            public void onException(Exception e) {
+                e.printStackTrace();
             }
 
             @Override
@@ -89,6 +98,8 @@ public class SignActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvSignIn:
+
+                Log.d("Sign In", "On Sign In Clicked");
 
                 if (etUsername.getText().length() == 0) {
                     etUsername.setError("Enter Username");

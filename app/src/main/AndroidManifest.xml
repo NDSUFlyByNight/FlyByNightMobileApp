@@ -21,6 +21,10 @@
             android:name=".FlightDetailsActivity"
             android:label="@string/title_activity_flight_details" >
         </activity>
+        <activity
+            android:name=".FlightAttendantItineryActivity"
+            android:label="Flight Itinerary" >
+        </activity>
     </application>
 
 </manifest>

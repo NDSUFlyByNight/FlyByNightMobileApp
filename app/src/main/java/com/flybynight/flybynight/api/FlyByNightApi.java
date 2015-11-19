@@ -44,7 +44,7 @@ public class FlyByNightApi {
 
 
     private static FlyByNightService getMockService() {
-        return getMockRestAdapter().create(FlyByNightMockService.class, new FlyByNightMockService());
+        return getMockRestAdapter().create(FlyByNightService.class, new FlyByNightMockService());
     }
 
     private static MockRestAdapter getMockRestAdapter() {
