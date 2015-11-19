@@ -7,11 +7,16 @@ import android.widget.TextView;
 
 import com.flybynight.flybynight.api.objects.Flight;
 
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormatter;
+
 /**
  * Created by Everett on 10/23/2015.
  */
 public class CardInflater implements IAdapterViewInflater<Flight>
 {
+
+
 	@Override
 	public View inflate(final BaseInflaterAdapter<Flight> adapter, final int pos, View convertView, ViewGroup parent)
 	{
@@ -41,6 +46,9 @@ public class CardInflater implements IAdapterViewInflater<Flight>
 		private TextView text2;
 		private TextView text3;
 
+
+		DateTimeFormatter formatter =  ;
+
 		public ViewHolder(View rootView)
 		{
 			rootView = rootView;
@@ -52,9 +60,10 @@ public class CardInflater implements IAdapterViewInflater<Flight>
 
 		public void updateDisplay(Flight item)
 		{
+
 			text1.setText(item.flight_num);
-			text2.setText("Departure: " + item.departure_time);
-			text3.setText("Arrival: " + item.arrival_time);
+			text2.setText("Departure: " + item.departure_time.toString("MM dd hh mm"));
+			text3.setText("Arrival: " + item.arrival_time.toString("MM dd hh mm"));
 		}
 	}
 }
